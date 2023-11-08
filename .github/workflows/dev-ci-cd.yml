@@ -58,27 +58,27 @@ jobs:
           scp docker-compose.yml $username@$host:/var/gallery
         shell: bash
 
-      # - name: Deploy New Image
-      #   if: ${{ success() }}
-      #   uses: appleboy/ssh-action@master
-      #   with:
-      #     host: ${{ secrets.TEST_HOST }}
-      #     username: ${{ secrets.TEST_USER }}
-      #     key: ${{ secrets.TEST_KEY }}
-      #     port: 22
-      #     script: |
-      #       cd /var/blog
-      #       #docker-compose stop
-      #       docker-compose pull
-      #       docker-compose up -d
+      - name: Deploy New Image
+        if: ${{ success() }}
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.TEST_HOST }}
+          username: ${{ secrets.TEST_USER }}
+          key: ${{ secrets.TEST_KEY }}
+          port: ${{ secrets.PORT }}
+          script: |
+            cd /var/blog
+            #docker-compose stop
+            docker-compose pull
+            docker-compose up -d
 
-      # - name: Delete Previous Image
-      #   if: ${{ success() }}
-      #   uses: appleboy/ssh-action@master
-      #   with:
-      #     host: ${{ secrets.TEST_HOST }}
-      #     username: ${{ secrets.TEST_USER }}
-      #     key: ${{ secrets.TEST_KEY }}
-      #     port: 22
-      #     script: |
-      #       docker image prune -af
+      - name: Delete Previous Image
+        if: ${{ success() }}
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.TEST_HOST }}
+          username: ${{ secrets.TEST_USER }}
+          key: ${{ secrets.TEST_KEY }}
+          port: ${{ secrets.PORT }}
+          script: |
+            docker image prune -af
