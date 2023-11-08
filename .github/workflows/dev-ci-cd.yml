@@ -20,8 +20,8 @@ jobs:
           touch .env.local
           echo "NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME=${{ secrets.CLOUDINARY_CLOUD_NAME }}" > .env.local
           echo "CLOUDINARY_API_KEY=${{ secrets.CLOUDINARY_API_KEY }}" >> .env.local
-          echo "CLOUDINARY_API_SECRET=${{ vars.CLOUDINARY_API_SECRET }}" >> .env.local
-          echo "CLOUDINARY_FOLDER=${{ vars.CLOUDINARY_FOLDER }}" >> .env.local
+          echo "CLOUDINARY_API_SECRET=${{ secrets.CLOUDINARY_API_SECRET }}" >> .env.local
+          echo "CLOUDINARY_FOLDER=${{ secrets.CLOUDINARY_FOLDER }}" >> .env.local
           cat .env.local
         shell: bash
 

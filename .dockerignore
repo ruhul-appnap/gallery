@@ -1,2 +1,9 @@
 node_modules
+Dockerfile*
+.git
+.github
+.gitignore
+dist/**
 .next
+/.next/
+README.md
