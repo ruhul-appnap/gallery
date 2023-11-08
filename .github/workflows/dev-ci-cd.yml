@@ -51,10 +51,9 @@ jobs:
           ssh-keyscan -H $host >> ~/.ssh/known_hosts
 
           echo "$key" >> ~/.ssh/id_rsa_server
-          chmod 400 ~/.ssh/id_rsa_server
+          chmod 600 ~/.ssh/id_rsa_server
           eval "$(ssh-agent -s)"
           ssh-add ~/.ssh/id_rsa_server
-          cat ~/.ssh/known_hosts
           # ssh $username@$host "cd /var/blog;sudo touch ala.txt"
           scp docker-compose.yml $username@$host:/var/gallery
         shell: bash
