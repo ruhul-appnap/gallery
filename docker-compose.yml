@@ -1,0 +1,8 @@
+version: "3"
+
+services:
+  blog:
+    image: ghcr.io/ruhul-appnap/gallery:v1.x
+    container_name: gallery
+    ports:
+      - 3000:3000
