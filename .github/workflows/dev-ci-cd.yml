@@ -62,9 +62,9 @@ jobs:
         if: ${{ success() }}
         uses: appleboy/ssh-action@master
         with:
-          host: ${{ secrets.TEST_HOST }}
-          username: ${{ secrets.TEST_USER }}
-          key: ${{ secrets.TEST_KEY }}
+          host: ${{ secrets.HOST }}
+          username: ${{ secrets.USER }}
+          key: ${{ secrets.KEY }}
           port: ${{ secrets.PORT }}
           script: |
             cd /var/blog
@@ -76,9 +76,9 @@ jobs:
         if: ${{ success() }}
         uses: appleboy/ssh-action@master
         with:
-          host: ${{ secrets.TEST_HOST }}
-          username: ${{ secrets.TEST_USER }}
-          key: ${{ secrets.TEST_KEY }}
+          host: ${{ secrets.HOST }}
+          username: ${{ secrets.USER }}
+          key: ${{ secrets.KEY }}
           port: ${{ secrets.PORT }}
           script: |
             docker image prune -af
