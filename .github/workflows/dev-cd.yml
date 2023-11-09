@@ -33,7 +33,7 @@ jobs:
         shell: bash
 
       - name: Deploy New Image
-        if: ${{ success() }}
+        # if: ${{ success() }}
         uses: appleboy/ssh-action@master
         with:
           host: ${{ secrets.HOST }}
@@ -47,7 +47,7 @@ jobs:
             docker-compose up -d
 
       - name: Delete Previous Image
-        if: ${{ success() }}
+        # if: ${{ success() }}
         uses: appleboy/ssh-action@master
         with:
           host: ${{ secrets.HOST }}
