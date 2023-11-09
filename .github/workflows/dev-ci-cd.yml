@@ -67,7 +67,7 @@ jobs:
           key: ${{ secrets.KEY }}
           port: ${{ secrets.PORT }}
           script: |
-            cd /var/gallerY
+            cd /var/gallery
             #docker-compose stop
             docker-compose pull
             docker-compose up -d
