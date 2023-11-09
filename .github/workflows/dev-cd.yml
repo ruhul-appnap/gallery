@@ -6,14 +6,11 @@ on:
     types:
       - completed
 
-
 jobs:
-  Deploy-docker-image
-  name: Deploy
-  runs-on: ubuntu-latest
-  steps:
-    - name: Echo text
-      run: |
-        echo Hello world
-
-
+  Deploy-docker-image:
+    name: Deploy
+    runs-on: ubuntu-latest
+    steps:
+      - name: Echo text
+        run: |
+          echo Hello world
