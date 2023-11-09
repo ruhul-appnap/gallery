@@ -1,4 +1,4 @@
-name: "Development CD"
+name: "Development CI"
 
 on:
   push:
@@ -68,9 +68,9 @@ jobs:
           port: ${{ secrets.PORT }}
           script: |
             cd /var/gallery
-            #docker-compose stop
+            docker-compose stop
             docker-compose pull
-            docker-compose up -d -remove-orphans
+            docker-compose up -d
 
       - name: Delete Previous Image
         if: ${{ success() }}

@@ -1,0 +1,19 @@
+name: "Development CD"
+
+on:
+  workflow_run
+    workflows:["Development CI"]
+    types:
+      - completed
+
+
+jobs:
+  Deploy-docker-image
+  name: Deploy
+  runs-on: ubuntu-latest
+  steps:
+    - name: Echo text
+      run: |
+        echo Hello world
+
+
