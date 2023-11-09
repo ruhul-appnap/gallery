@@ -78,6 +78,7 @@ const Home: NextPage = ({ images }: { images: ImageProps[] }) => {
           ))}
         </div>
       </main>
+      <footer className="text-center text-white">aaa</footer>
     </>
   );
 };

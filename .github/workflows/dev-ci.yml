@@ -39,46 +39,46 @@ jobs:
           push: true
           tags: ghcr.io/${{ github.repository }}:v1.x
 
-      - name: Login and update docker compose file
-        env:
-          host: ${{ secrets.HOST }}
-          username: ${{ secrets.USER }}
-          key: ${{ secrets.KEY }}
-          port: ${{ secrets.PORT }}
-        run: |
-          mkdir -p ~/.ssh/
-          touch ~/.ssh/known_hosts
-          ssh-keyscan -H $host >> ~/.ssh/known_hosts
+      # - name: Login and update docker compose file
+      #   env:
+      #     host: ${{ secrets.HOST }}
+      #     username: ${{ secrets.USER }}
+      #     key: ${{ secrets.KEY }}
+      #     port: ${{ secrets.PORT }}
+      #   run: |
+      #     mkdir -p ~/.ssh/
+      #     touch ~/.ssh/known_hosts
+      #     ssh-keyscan -H $host >> ~/.ssh/known_hosts
 
-          echo "$key" >> ~/.ssh/id_rsa_server
-          chmod 600 ~/.ssh/id_rsa_server
-          eval "$(ssh-agent -s)"
-          ssh-add ~/.ssh/id_rsa_server
-          # ssh $username@$host "cd /var/blog;sudo touch ala.txt"
-          scp docker-compose.yml $username@$host:/var/gallery
-        shell: bash
+      #     echo "$key" >> ~/.ssh/id_rsa_server
+      #     chmod 600 ~/.ssh/id_rsa_server
+      #     eval "$(ssh-agent -s)"
+      #     ssh-add ~/.ssh/id_rsa_server
+      #     # ssh $username@$host "cd /var/blog;sudo touch ala.txt"
+      #     scp docker-compose.yml $username@$host:/var/gallery
+      #   shell: bash
 
-      - name: Deploy New Image
-        if: ${{ success() }}
-        uses: appleboy/ssh-action@master
-        with:
-          host: ${{ secrets.HOST }}
-          username: ${{ secrets.USER }}
-          key: ${{ secrets.KEY }}
-          port: ${{ secrets.PORT }}
-          script: |
-            cd /var/gallery
-            docker-compose stop
-            docker-compose pull
-            docker-compose up -d
+      # - name: Deploy New Image
+      #   if: ${{ success() }}
+      #   uses: appleboy/ssh-action@master
+      #   with:
+      #     host: ${{ secrets.HOST }}
+      #     username: ${{ secrets.USER }}
+      #     key: ${{ secrets.KEY }}
+      #     port: ${{ secrets.PORT }}
+      #     script: |
+      #       cd /var/gallery
+      #       docker-compose stop
+      #       docker-compose pull
+      #       docker-compose up -d
 
-      - name: Delete Previous Image
-        if: ${{ success() }}
-        uses: appleboy/ssh-action@master
-        with:
-          host: ${{ secrets.HOST }}
-          username: ${{ secrets.USER }}
-          key: ${{ secrets.KEY }}
-          port: ${{ secrets.PORT }}
-          script: |
-            docker image prune -af
+      # - name: Delete Previous Image
+      #   if: ${{ success() }}
+      #   uses: appleboy/ssh-action@master
+      #   with:
+      #     host: ${{ secrets.HOST }}
+      #     username: ${{ secrets.USER }}
+      #     key: ${{ secrets.KEY }}
+      #     port: ${{ secrets.PORT }}
+      #     script: |
+      #       docker image prune -af
