@@ -78,7 +78,7 @@ const Home: NextPage = ({ images }: { images: ImageProps[] }) => {
           ))}
         </div>
       </main>
-      <footer className="text-center text-white">aaa</footer>
+      <footer className="text-center text-white">Al right --- 13:11:23</footer>
     </>
   );
 };
