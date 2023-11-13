@@ -43,20 +43,23 @@ jobs:
           key: ${{ secrets.KEY }}
           port: ${{ secrets.PORT }}
           script: |
-            # echo $AZURE_PASSWORD | docker login -u $AZURE_USER --password-stdin
-            docker login amarpetdockerregistry.azurecr.io --username $AZURE_USER --password $AZURE_PASSWORD 
-            cd /var/gallery
-            docker-compose stop
-            docker-compose pull
-            docker-compose up -d
+            echo ${{ env.AZURE_PASSWORD}}
+            echo $AZURE_PASSWORD
+            ech hello
+            echo ${{ env.AZURE_PASSWORD}} | docker login amarpetdockerregistry.azurecr.io -u $AZURE_USER --password-stdin
 
-      - name: Delete Previous Image
-        if: ${{ success() }}
-        uses: appleboy/ssh-action@master
-        with:
-          host: ${{ secrets.HOST }}
-          username: ${{ secrets.USER }}
-          key: ${{ secrets.KEY }}
-          port: ${{ secrets.PORT }}
-          script: |
-            docker image prune -af
+            # cd /var/gallery
+            # docker-compose stop
+            # docker-compose pull
+            # docker-compose up -d
+
+      # - name: Delete Previous Image
+      #   if: ${{ success() }}
+      #   uses: appleboy/ssh-action@master
+      #   with:
+      #     host: ${{ secrets.HOST }}
+      #     username: ${{ secrets.USER }}
+      #     key: ${{ secrets.KEY }}
+      #     port: ${{ secrets.PORT }}
+      #     script: |
+      #       docker image prune -af
