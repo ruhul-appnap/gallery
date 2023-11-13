@@ -46,7 +46,7 @@ jobs:
             echo ${{ env.AZURE_PASSWORD}}
             echo $AZURE_PASSWORD
             ech hello
-            echo ${{ env.AZURE_PASSWORD}} | docker login amarpetdockerregistry.azurecr.io -u $AZURE_USER --password-stdin
+            echo ${{ env.AZURE_PASSWORD}} | docker login amarpetdockerregistry.azurecr.io -u ${{ env.AZURE_PASSWORD}} --password-stdin
 
             # cd /var/gallery
             # docker-compose stop
