@@ -43,7 +43,8 @@ jobs:
           key: ${{ secrets.KEY }}
           port: ${{ secrets.PORT }}
           script: |
-            echo $AZURE_PASSWORD | docker login -u $AZURE_USER --password-stdin
+            # echo $AZURE_PASSWORD | docker login -u $AZURE_USER --password-stdin
+            docker login amarpetdockerregistry.azurecr.io --username $AZURE_USER --password $AZURE_PASSWORD 
             cd /var/gallery
             docker-compose stop
             docker-compose pull
