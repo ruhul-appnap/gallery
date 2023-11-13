@@ -42,11 +42,12 @@ jobs:
       - name: Log in to the azure container registry
         uses: azure/docker-login@v1
         with:
-          registry: amarpetdockerregistry.azurecr.io
+          login-server: amarpetdockerregistry.azurecr.io
           username: ${{ secrets.AZURE_USER }}
           password: ${{ secrets.AZURE_PASSWORD }}
 
       - name: Build and push
+        if: ${{ success() }}
         uses: docker/build-push-action@v5
         with:
           context: .
