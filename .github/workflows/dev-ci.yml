@@ -25,19 +25,40 @@ jobs:
           cat .env.local
         shell: bash
 
-      - name: Log in to the github container registry
-        uses: docker/login-action@v3
-        with:
-          registry: ghcr.io
-          username: ${{ github.actor }}
-          password: ${{ secrets.GITHUB_TOKEN }}
+      # - name: Log in to the github container registry
+      #   uses: docker/login-action@v3
+      #   with:
+      #     registry: ghcr.io
+      #     username: ${{ github.actor }}
+      #     password: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Build and publish image to github container registry
+      # - name: Build and publish image to github container registry
+      #   uses: docker/build-push-action@v5
+      #   with:
+      #     context: .
+      #     push: true
+      #     tags: ghcr.io/${{ github.repository }}:v1.x
+
+      - name: Log in to the azure container registry
+        uses: azure/docker-login@v1
+        with:
+          registry: amarpetdockerregistry.azurecr.io
+          username: ${{ secrets.AZURE_USER }}
+          password: ${{ secrets.AZURE_PASSWORD }}
+
+      - name: Build and push
         uses: docker/build-push-action@v5
         with:
           context: .
           push: true
-          tags: ghcr.io/${{ github.repository }}:v1.x
+          tags: amarpetdockerregistry.azurecr.io/blog:latest
+
+      # rm docker-compose.yml
+      # scp docker-compose.yml $username@$host:/var/www/blog/
+      # cd /var/blog
+      # rm docker-compose.yml
+      # scp docker-compose.yml $username@$host:/var/blog/
+      # ls -l
 
       # - name: Login and update docker compose file
       #   env:
