@@ -4,7 +4,7 @@ on:
   workflow_run:
     workflows: ["Development CI"]
     types: [completed]
-    branches: [main]
+    branches: [v1.x]
 
 jobs:
   Deploy-docker-image:
@@ -31,31 +31,31 @@ jobs:
           #scp docker-compose.yml $username@$host:/var/gallery
         shell: bash
 
-      - name: Deploy New Image
-        if: ${{ success() }}
-        uses: appleboy/ssh-action@master
-        env:
-          AZURE_USER: ${{ secrets.AZURE_USER }}
-          AZURE_PASSWORD: ${{ secrets.AZURE_PASSWORD }}
-        with:
-          host: ${{ secrets.HOST }}
-          username: ${{ secrets.USER }}
-          key: ${{ secrets.KEY }}
-          port: ${{ secrets.PORT }}
-          script: |
-            echo ${{ env.AZURE_PASSWORD }} | docker login amarpetdockerregistry.azurecr.io -u ${{ env.AZURE_USER}} --password-stdin
-            cd /var/gallery
-            docker-compose stop
-            docker-compose pull
-            docker-compose up -d
+      # - name: Deploy New Image
+      #   if: ${{ success() }}
+      #   uses: appleboy/ssh-action@master
+      #   env:
+      #     AZURE_USER: ${{ secrets.AZURE_USER }}
+      #     AZURE_PASSWORD: ${{ secrets.AZURE_PASSWORD }}
+      #   with:
+      #     host: ${{ secrets.HOST }}
+      #     username: ${{ secrets.USER }}
+      #     key: ${{ secrets.KEY }}
+      #     port: ${{ secrets.PORT }}
+      #     script: |
+      #       echo ${{ env.AZURE_PASSWORD }} | docker login amarpetdockerregistry.azurecr.io -u ${{ env.AZURE_USER}} --password-stdin
+      #       cd /var/gallery
+      #       docker-compose stop
+      #       docker-compose pull
+      #       docker-compose up -d
 
-      - name: Delete Previous Image
-        if: ${{ success() }}
-        uses: appleboy/ssh-action@master
-        with:
-          host: ${{ secrets.HOST }}
-          username: ${{ secrets.USER }}
-          key: ${{ secrets.KEY }}
-          port: ${{ secrets.PORT }}
-          script: |
-            docker image prune -af
+      # - name: Delete Previous Image
+      #   if: ${{ success() }}
+      #   uses: appleboy/ssh-action@master
+      #   with:
+      #     host: ${{ secrets.HOST }}
+      #     username: ${{ secrets.USER }}
+      #     key: ${{ secrets.KEY }}
+      #     port: ${{ secrets.PORT }}
+      #     script: |
+      #       docker image prune -af
