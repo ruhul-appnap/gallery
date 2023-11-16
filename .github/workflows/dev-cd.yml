@@ -1,13 +1,13 @@
 name: "Development CD"
 
-on:
-  push:
-    branches:
-      - v1.x
+workflow_run:
+  workflows: ["Development CI"]
+  types:
+    - completed
 
 jobs:
-  Publish_docker_image:
-    uses: ./.github/workflows/dev-ci.yml
+  # Publish_docker_image:
+  #   uses: ./.github/workflows/dev-ci.yml
 
   Deploy-docker-image:
     name: Deploy

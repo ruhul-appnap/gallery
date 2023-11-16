@@ -1,7 +1,9 @@
-name: "Development CI"
+name: "c"
 
 on:
-  workflow_call:
+  push:
+    branches:
+      - v1.x
 
 jobs:
   docker-image-build-publish:
