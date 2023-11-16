@@ -1,8 +1,8 @@
-name: "Development CD"
+name: "Dev_cd"
 
 on:
   workflow_run:
-    workflows: ["Development CI"]
+    workflows: ["dev-ci"]
     types:
       - completed
 
