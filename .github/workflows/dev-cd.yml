@@ -7,7 +7,7 @@ on:
 
 jobs:
   Publish_docker_image:
-    uses: ./github/workflows/dev-ci.yml
+    uses: ./.github/workflows/dev-ci.yml
 
   Deploy-docker-image:
     name: Deploy
