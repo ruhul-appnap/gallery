@@ -1,11 +1,9 @@
 name: "Development CD"
 
 on:
-  workflow_success:
-    workflow: Development CI
-    # workflows: ["Development CI"]
-    # types: [completed]
-    # branches: [v1.x]
+  workflow_run:
+    workflows: ["Development CI"]
+    types: [completed]
 
 jobs:
   Deploy-docker-image:
