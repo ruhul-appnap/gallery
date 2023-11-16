@@ -1,9 +1,10 @@
 name: "Development CD"
 
-workflow_run:
-  workflows: ["Development CI"]
-  types:
-    - completed
+on:
+  workflow_run:
+    workflows: ["Development CI"]
+    types:
+      - completed
 
 jobs:
   # Publish_docker_image:
