@@ -1,13 +1,11 @@
 name: "Development CI"
 
 on:
-  push:
-    branches:
-      - v1.x
+  workflow_call:
 
 jobs:
   docker-image-build-publish:
-    name: Publish docker image
+    name: Publish_docker_image
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
@@ -31,9 +29,6 @@ jobs:
           login-server: amarpetdockerregistry.azurecr.io
           username: ${{ secrets.AZURE_USER }}
           password: ${{ secrets.AZURE_PASSWORD }}
-
-      - name: Deploy
-        uses: ./.github/workflows/dev-cd.yml
 
       # - name: Build and push
       #   if: ${{ success() }}

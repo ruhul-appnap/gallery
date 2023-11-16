@@ -1,11 +1,17 @@
 name: "Development CD"
 
 on:
-  workflow_call:
+  push:
+    branches:
+      - v1.x
 
 jobs:
+  Publish_docker_image:
+    uses: ./github/workflows/dev-ci.yml
+
   Deploy-docker-image:
     name: Deploy
+    needs: [Publish_docker_image]
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
