@@ -33,7 +33,7 @@ jobs:
           password: ${{ secrets.AZURE_PASSWORD }}
 
       - name: Deploy
-        uses: ./dev-cd.yml
+        uses: ./.github/workflows/dev-cd.yml
 
       # - name: Build and push
       #   if: ${{ success() }}
