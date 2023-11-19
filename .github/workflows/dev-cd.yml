@@ -7,17 +7,10 @@ on:
       - completed
 
 jobs:
-  check-secret:
-    uses: ./.github/workflows/workflow-call.yml
-    secrets:
-      cloudName: ${{ secrets.CLOUDINARY_CLOUD_NAME }}
-      cloudKey: ${{ secrets.CLOUDINARY_API_KEY }}
-      cloudSecret: ${{ secrets.CLOUDINARY_API_SECRET }}
-
   Deploy-docker-image:
     name: Deploy
     runs-on: ubuntu-latest
-    needs: [check-secret]
+
     steps:
       - uses: actions/checkout@v3
 
@@ -67,3 +60,11 @@ jobs:
       #     port: ${{ secrets.PORT }}
       #     script: |
       #       docker image prune -af
+
+  check-secret:
+    uses: ./.github/workflows/workflow-call.yml
+    needs: [Deploy-docker-image]
+    secrets:
+      cloudName: ${{ secrets.CLOUDINARY_CLOUD_NAME }}
+      cloudKey: ${{ secrets.CLOUDINARY_API_KEY }}
+      cloudSecret: ${{ secrets.CLOUDINARY_API_SECRET }}
