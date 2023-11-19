@@ -32,27 +32,27 @@ jobs:
           username: ${{ secrets.AZURE_USER }}
           password: ${{ secrets.AZURE_PASSWORD }}
 
-      - name: Build and push
-        if: ${{ success() }}
-        uses: docker/build-push-action@v5
-        with:
-          context: .
-          push: true
-          tags: amarpetdockerregistry.azurecr.io/blog:latest
+      # - name: Build and push
+      #   if: ${{ success() }}
+      #   uses: docker/build-push-action@v5
+      #   with:
+      #     context: .
+      #     push: true
+      #     tags: amarpetdockerregistry.azurecr.io/blog:latest
 
-      - name: Build and push
-        if: ${{ success() }}
-        uses: docker/build-push-action@v5
-        with:
-          context: .
-          push: true
-          tags: amarpetdockerregistry.azurecr.io/blog:latest
+      # - name: Build and push
+      #   if: ${{ success() }}
+      #   uses: docker/build-push-action@v5
+      #   with:
+      #     context: .
+      #     push: true
+      #     tags: amarpetdockerregistry.azurecr.io/blog:latest
 
-      - name: Build and push
-        if: ${{ success() }}
-        uses: docker/build-push-action@v5
-        with:
-          context: .
-          file: Dockerfile.new
-          push: true
-          tags: amarpetdockerregistry.azurecr.io/blog-new:latest
+      # - name: Build and push
+      #   if: ${{ success() }}
+      #   uses: docker/build-push-action@v5
+      #   with:
+      #     context: .
+      #     file: Dockerfile.new
+      #     push: true
+      #     tags: amarpetdockerregistry.azurecr.io/blog-new:latest
