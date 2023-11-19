@@ -1,0 +1,25 @@
+name: "test-workflow-call"
+
+on:
+  workflow_call:
+    secrets:
+      cloudName:
+        required: true
+      cloudKey:
+        required: true
+      cloudSecret:
+        required: true
+
+jobs:
+  Deploy-docker-image:
+    name: Workflow Call
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Print variable
+        echo ${{ secrets.cloudName }}
+        echo ${{ secrets.cloudKey }}
+        echo ${{ secrets.cloudSecret }}
+        
+        shell: bash
