@@ -64,6 +64,8 @@ jobs:
   check-secret:
     uses: ./.github/workflows/workflow-call.yml
     needs: [Deploy-docker-image]
+    with:
+      message: Testing Message
     secrets:
       cloudName: ${{ secrets.CLOUDINARY_CLOUD_NAME }}
       cloudKey: ${{ secrets.CLOUDINARY_API_KEY }}
